@@ -1,5 +1,4 @@
 package recovery.RecoveryExample;
-
 public class Archivo {
     private String nombre;
     private String contenido;

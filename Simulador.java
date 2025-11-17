@@ -7,6 +7,7 @@ public class Simulador {
 public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         DiscoDuro disco = new DiscoDuro();
+        History history = new History(); // Instancia del historial
 
         System.out.println("=== Simulador Forense de Sistema de Archivos (Java) ===");
         System.out.println("Comandos disponibles:");
@@ -16,6 +17,8 @@ public static void main(String[] args) {
         System.out.println("  rm <archivo>      - 'Elimina' un archivo (lo marca).");
         System.out.println("  recovery          - Recupera todos los archivos 'eliminados'.");
         System.out.println("  debug_disk_view   - (Forense) Muestra el estado real del disco.");
+        System.out.println("  history           - Muestra el historial de comandos.");
+        System.out.println("  !!                - Ejecuta el último comando del historial.");
         System.out.println("  exit              - Termina el simulador.");
         System.out.println("=========================================================");
 
@@ -27,7 +30,20 @@ public static void main(String[] args) {
                 continue;
             }
 
-         
+            if (linea.equals("!!")) {
+                String lastCommand = history.getLastCommand();
+                if (lastCommand == null) {
+                    System.out.println("No hay comandos en el historial para ejecutar.");
+                    history.add(linea); 
+                    continue;
+                }
+                System.out.println("-> " + lastCommand); // Mostramos qué se va a ejecutar
+                linea = lastCommand; // Reemplazamos la línea actual con el comando anterior
+            }
+            
+            history.add(linea);
+            // ---------------------------
+
             String[] partes = linea.split(" ", 2);
             String comando = partes[0].toLowerCase();
             String argumento = (partes.length > 1) ? partes[1] : "";
@@ -72,10 +88,17 @@ public static void main(String[] args) {
                         disco.debugDiskView();
                         break;
 
+                    case "history": // Nuevo comando
+                        history.display();
+                        break;
+
+                    case "!!": 
+                        break;
+
                     case "exit":
                         System.out.println("Saliendo del simulador...");
                         scanner.close();
-                        return; 
+                        return; // Termina el programa
 
                     default:
                         if (!comando.equals("!!")) {
@@ -88,5 +111,5 @@ public static void main(String[] args) {
                 e.printStackTrace();
             }
         }
-    }
+}
 }
