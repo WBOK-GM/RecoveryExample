@@ -73,6 +73,7 @@ java recovery.RecoveryExample.Simulador
 | `recovery` | Recupera todos los archivos eliminados | `recovery` |
 | `debug_disk_view` | Muestra el estado forense completo del disco | `debug_disk_view` |
 | `history` | Muestra el historial de comandos ejecutados | `history` |
+| `clear` | Limpia la consola | `history` |
 | `!!` | Re-ejecuta el último comando | `!!` |
 | `exit` | Termina el simulador | `exit` |
 
@@ -123,9 +124,9 @@ La clase Simulador.java verifica si los comandos que requieren un argumento (com
 
 En su lugar, detecta que el argumento está vacío e imprime un mensaje de ayuda:
 
-mini-linux> rm
+```mini-linux> rm
 Uso: rm <nombre_archivo>
-
+```
 
 ### 2. Errores Inesperados (Try-Catch)
 
@@ -152,10 +153,11 @@ Si ocurre un error inesperado, el simulador imprimirá el error en la consola pe
 
 ```
 RecoveryExample/
-├── DirectorioEntry.java    # Entrada de directorio
-├── DiscoDuro.java           # Núcleo del sistema de archivos
-├── History.java             # Historial de comandos
-├── Inodo.java               # Estructura de inodo
-├── README.md                # Este archivo
-└── Simulador.java           # Interfaz de usuario (main)
+├── componentes/
+│   ├── DirectorioEntry.java    # Entrada de directorio
+│   ├── DiscoDuro.java           # Núcleo del sistema de archivos
+│   ├── History.java             # Historial de comandos
+│   └── Inodo.java               # Estructura de inodo
+├── Simulador.java               # Interfaz de usuario (main)
+└── README.md                    # Este archivo
 ```
