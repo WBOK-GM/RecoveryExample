@@ -1,4 +1,4 @@
-package recovery.RecoveryExample;
+package recovery.RecoveryExample.componentes;
 
 import java.util.ArrayList;
 import java.util.List;

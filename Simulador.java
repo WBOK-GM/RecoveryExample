@@ -2,6 +2,9 @@ package recovery.RecoveryExample;
 
 import java.util.Scanner;
 
+import recovery.RecoveryExample.componentes.DiscoDuro;
+import recovery.RecoveryExample.componentes.History;
+
 public class Simulador {
 
 public static void main(String[] args) {
