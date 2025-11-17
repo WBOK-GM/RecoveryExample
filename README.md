@@ -113,6 +113,25 @@ Total de archivos restaurados (re-enlazados): 1
 mini-linux> ls
 recuperado_inodo_1.txt
 ```
+## Manejo de Errores y Robustez
+
+El simulador está diseñado para ser robusto y fácil de usar, manejando errores de entrada comunes:
+
+### 1. Comandos Incompletos
+
+La clase Simulador.java verifica si los comandos que requieren un argumento (como touch o rm) lo han recibido. Si un usuario escribe solo touch, el programa no intenta ejecutar la acción (lo que causaría un error).
+
+En su lugar, detecta que el argumento está vacío e imprime un mensaje de ayuda:
+
+mini-linux> rm
+Uso: rm <nombre_archivo>
+
+
+### 2. Errores Inesperados (Try-Catch)
+
+Todo el switch de comandos dentro de Simulador.java está envuelto en un bloque try-catch (Exception e). Esta es una "red de seguridad" que previene que el simulador se cierre inesperadamente si ocurre un bug o un NullPointerException en las clases internas.
+
+Si ocurre un error inesperado, el simulador imprimirá el error en la consola pero no se detendrá. El usuario verá el prompt mini-linux> de nuevo y podrá seguir trabajando.
 
 ## Funcionamiento de la Recuperación
 
