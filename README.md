@@ -97,11 +97,6 @@ Archivo 'secreto.txt' desenlazado (Inodo #1 ahora tiene 0 enlaces).
 mini-linux> ls
 (Directorio vacío)
 
-2. TABLA DE INODOS (El disco 'real')
------------------------------------
-Inodo #1 | Enlaces: 0 | Estado: LIBRE (Eliminado) | Contenido: 'Información confide...'
---- FIN DE LA VISTA ---
-
 mini-linux> recovery
 Iniciando escaneo forense de la tabla de inodos...
 Buscando inodos con 0 enlaces (sin referencia de directorio)...
