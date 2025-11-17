@@ -9,19 +9,7 @@ public static void main(String[] args) {
         DiscoDuro disco = new DiscoDuro();
         History history = new History(); // Instancia del historial
 
-        System.out.println("=== Simulador Forense de Sistema de Archivos (Java) ===");
-        System.out.println("Comandos disponibles:");
-        System.out.println("  touch <archivo>   - Crea un archivo vacío.");
-        System.out.println("  write <archivo>   - Escribe contenido en un archivo.");
-        System.out.println("  ls                - Lista los archivos activos.");
-        System.out.println("  rm <archivo>      - 'Elimina' un archivo (lo marca).");
-        System.out.println("  recovery          - Recupera todos los archivos 'eliminados'.");
-        System.out.println("  debug_disk_view   - (Forense) Muestra el estado real del disco.");
-        System.out.println("  history           - Muestra el historial de comandos.");
-        System.out.println("  !!                - Ejecuta el último comando del historial.");
-        System.out.println("  exit              - Termina el simulador.");
-        System.out.println("=========================================================");
-
+        printMenu();
         while (true) {
             System.out.print("\nmini-linux> ");
             String linea = scanner.nextLine().trim();
@@ -57,7 +45,6 @@ public static void main(String[] args) {
                             disco.touch(argumento);
                         }
                         break;
-
                     case "write":
                         if (argumento.isEmpty()) {
                             System.out.println("Uso: write <nombre_archivo>");
@@ -67,11 +54,9 @@ public static void main(String[] args) {
                             disco.write(argumento, contenido);
                         }
                         break;
-
                     case "ls":
                         disco.ls();
                         break;
-
                     case "rm":
                         if (argumento.isEmpty()) {
                             System.out.println("Uso: rm <nombre_archivo>");
@@ -79,27 +64,24 @@ public static void main(String[] args) {
                             disco.rm(argumento);
                         }
                         break;
-
                     case "recovery":
                         disco.recovery();
                         break;
-                    
                     case "debug_disk_view":
                         disco.debugDiskView();
                         break;
-
                     case "history": // Nuevo comando
                         history.display();
                         break;
-
                     case "!!": 
                         break;
-
                     case "exit":
                         System.out.println("Saliendo del simulador...");
                         scanner.close();
                         return; // Termina el programa
-
+                    case "clear":
+                        clearConsole();
+                        break;
                     default:
                         if (!comando.equals("!!")) {
                             System.out.println("Comando desconocido: '" + comando + "'");
@@ -111,5 +93,28 @@ public static void main(String[] args) {
                 e.printStackTrace();
             }
         }
-}
+    }
+    private static void clearConsole() {
+    for (int i = 0; i < 50; i++) {
+            System.out.println();
+        }
+    printMenu();
+
+    }
+
+    private static void printMenu(){
+        System.out.println("=== Simulador Forense de Sistema de Archivos (Java) ===");
+        System.out.println("Comandos disponibles:");
+        System.out.println("  touch <archivo>   - Crea un archivo vacío.");
+        System.out.println("  write <archivo>   - Escribe contenido en un archivo.");
+        System.out.println("  ls                - Lista los archivos activos.");
+        System.out.println("  rm <archivo>      - 'Elimina' un archivo (lo marca).");
+        System.out.println("  recovery          - Recupera todos los archivos 'eliminados'.");
+        System.out.println("  debug_disk_view   - (Forense) Muestra el estado real del disco.");
+        System.out.println("  history           - Muestra el historial de comandos.");
+        System.out.println("  clear             - Limpia la consola.");
+        System.out.println("  !!                - Ejecuta el último comando del historial.");
+        System.out.println("  exit              - Termina el simulador.");
+        System.out.println("=========================================================");
+    }
 }
