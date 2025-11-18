@@ -1,4 +1,4 @@
-package recovery.RecoveryExample;
+package recovery.RecoveryExample.componentes;
 
 
 public class DirectorioEntry {
